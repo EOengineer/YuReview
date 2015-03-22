@@ -31,7 +31,7 @@ class ActiveSupport::TestCase
 
   def create_movie
     Movie.delete_all
-    Movie.create(title: "title #{n}", description: "description #{n}", year: 1990)
+    Movie.create(title: "title", description: "description", year: 1990)
   end
 
   def build_movie
