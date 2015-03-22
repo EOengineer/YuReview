@@ -20,5 +20,25 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
+  def create_movies(num)
+    Movie.delete_all
+    num = 1 if !num
+    num.to_i.times do |n|
+      Movie.create(title: "title #{n}", description: "description #{n}", year: 1990)
+    end
+    Movie.all
+  end
+
+  def create_movie
+    Movie.delete_all
+    Movie.create(title: "title #{n}", description: "description #{n}", year: 1990)
+  end
+
+  def build_movie
+    Movie.new(title: "title #{n}", description: "description #{n}", year: 1990)
+  end
+
+
+
   # Add more helper methods to be used by all tests here...
 end
