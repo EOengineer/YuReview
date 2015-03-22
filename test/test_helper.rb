@@ -35,7 +35,7 @@ class ActiveSupport::TestCase
   end
 
   def build_movie
-    Movie.new(title: "title #{n}", description: "description #{n}", year: 1990)
+    Movie.new(title: "title", description: "description", year: 1990)
   end
 
 

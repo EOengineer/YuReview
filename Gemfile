@@ -49,5 +49,6 @@ group :test do
   gem 'minitest-spec-rails'
   gem "minitest-rails-capybara"
   gem "factory_girl_rails", "~> 4.0"
+  gem 'launchy'
 end
 
