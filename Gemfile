@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'pry-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -48,5 +49,6 @@ group :test do
   gem 'minitest-spec-rails'
   gem "minitest-rails-capybara"
   gem "factory_girl_rails", "~> 4.0"
+  gem 'launchy'
 end
 
