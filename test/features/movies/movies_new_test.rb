@@ -6,7 +6,9 @@ feature 'admin creates a new movie' do
     @movie = build_movie
   end
 
-  teardown {Movie.delete_all}
+  after do
+    Movie.delete_all
+  end
 
 
   scenario 'success with valid data' do

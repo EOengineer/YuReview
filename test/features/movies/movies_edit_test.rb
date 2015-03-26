@@ -5,6 +5,10 @@ feature 'edits an existing movie' do
     @movie = create_movie
   end
 
+  after do
+    Movie.delete_all
+  end
+
   scenario 'successful with valid data' do
     visit edit_admin_movie_path(@movie)
     current_path.must_equal(edit_admin_movie_path(@movie))

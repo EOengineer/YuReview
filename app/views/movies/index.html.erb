@@ -1,5 +1,7 @@
 <h1>Welcome to YuReview!</h1>
 
-<%= @movies.each do |m| %>
-  <%= m.title %>
+<% @movies.each do |m| %>
+  <div class="movie-index">
+    <%= link_to "#{m.title}", movie_path(m) %>
+  </div>
 <% end %>
