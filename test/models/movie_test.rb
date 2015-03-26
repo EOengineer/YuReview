@@ -2,25 +2,24 @@ require "test_helper"
 
 describe Movie do
 
-  setup { build_movie }
-  setup { @movie = Movie.new(title: nil, description: 'description #{n}', year: 1990)}
-  teardown { Movie.delete_all }
-
-
-  it "must be valid" do
-    Movie.first.must_be :valid?
-    @movie.wont_be :valid?
+  context 'required fields' do
+    should validate_presence_of(:title)
+    should validate_presence_of(:description)
+    should validate_presence_of(:year)
   end
 
-  private
-
-  def build_movie
-    5.times do |n|
-      Movie.create(title: "title #{n}", description: 'description #{n}', year: 1990)
-    end
+  context 'year format' do
+    should allow_value('1994').for(:year)
+    should_not allow_value('123').for(:year)
+    should_not allow_value('12345').for(:year)
   end
 
-  def build_invalid
-    Movie.new(title: "nil", description: 'description #{n}', year: 1990)
+  context 'required with data' do
+    should_not allow_value(nil).for(:title)
+    should_not allow_value('').for(:title)
+    should_not allow_value(nil).for(:description)
+    should_not allow_value('').for(:description)
+    should_not allow_value(nil).for(:year)
+    should_not allow_value('').for(:year)
   end
 end

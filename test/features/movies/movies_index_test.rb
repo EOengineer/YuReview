@@ -2,8 +2,13 @@ require "test_helper"
 
 feature "views movies index" do
 
-  setup { create_movies(5) }
-  teardown { Movie.delete_all}
+  before do
+    create_movies(5)
+  end
+
+  after do
+    Movie.delete_all
+  end
 
   scenario "it welcomes" do
     visit movies_path

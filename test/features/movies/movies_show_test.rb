@@ -6,7 +6,9 @@ feature "Views a movie's show page" do
     @movie = create_movies(2)
   end
 
-  teardown { Movie.delete_all}
+  after do
+    Movie.delete_all
+  end
 
   scenario "views first movie path" do
     visit movie_path(@movie.first)
