@@ -4,6 +4,7 @@ feature "views movies index" do
 
   before do
     create_movies(5)
+    create_and_authenticate_valid_user
   end
 
   after do

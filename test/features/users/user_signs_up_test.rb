@@ -29,7 +29,6 @@ feature 'user signs up' do
 
     User.all.count.must_equal(starting_count + 1)
     current_path.must_equal(movies_path)
-
   end
 
   scenario 'failure and errors when password confirmation doesnt match' do

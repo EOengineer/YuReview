@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+  skip_before_action :authenticate
 
   def new
   end
@@ -14,5 +14,11 @@ class SessionsController < ApplicationController
       flash[:alert] = "Email or Password Invalid."
       render 'new'
     end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    flash[:now] = "Successfully Signed Out."
+    redirect_to signin_path
   end
 end
