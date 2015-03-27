@@ -5,16 +5,22 @@
 
   <%= form_for [:admin, @movie] do |f| %>
     <div class='movie-container'>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
+      <div class="field">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
 
-      <%= f.label :description %>
-      <%= f.text_area :description %>
+      <div class="field">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+      </div>
 
-      <%= f.label :year %>
-      <%= f.number_field :year %>
+      <div class="field">
+        <%= f.label :year %>
+        <%= f.number_field :year %>
+      </div>
 
-      <%= f.submit "Create Movie" %>
+      <div class="actions"><%= f.submit "Create Movie" %></div>
     </div>
   <% end %>
 
