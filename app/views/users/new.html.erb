@@ -26,5 +26,5 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
-  <div class="actions"><%= f.submit "Sign Up"%></div>
+  <div class="actions"><%= submit_tag "Sign Up", data: { disable_with: "Submitting..." } %></div>
 <% end %>
