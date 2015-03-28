@@ -2,8 +2,9 @@ require 'test_helper'
 
 feature "Views a movie's show page" do
 
-  def setup
+  before do
     @movie = create_movies(2)
+    create_and_authenticate_valid_user
   end
 
   after do

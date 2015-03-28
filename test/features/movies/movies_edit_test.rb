@@ -1,8 +1,9 @@
 require 'test_helper'
 
 feature 'edits an existing movie' do
-  def setup
+  before do
     @movie = create_movie
+    create_and_authenticate_valid_user
   end
 
   after do

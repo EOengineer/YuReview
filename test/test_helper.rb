@@ -38,6 +38,19 @@ class ActiveSupport::TestCase
     Movie.new(title: "title", description: "description", year: 1990)
   end
 
+  def create_and_authenticate_valid_user
+    @user = User.create(email: 'test@test_user.com',
+      first_name: "test", last_name: 'user', password: 'password',
+        password_confirmation: 'password')
+
+    visit signin_path
+
+    fill_in 'Email', with: @user.email
+    fill_in 'Password', with: @user.password
+
+    click_button 'Sign In'
+  end
+
 
 
   # Add more helper methods to be used by all tests here...

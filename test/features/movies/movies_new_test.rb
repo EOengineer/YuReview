@@ -2,8 +2,9 @@ require 'test_helper'
 
 feature 'admin creates a new movie' do
 
-  def setup
+  before do
     @movie = build_movie
+    create_and_authenticate_valid_user
   end
 
   after do
