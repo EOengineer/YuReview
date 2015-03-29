@@ -1,0 +1,28 @@
+<%= form_for [@movie, @review] do |f| %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :summary %>
+    <%= f.text_field :summary %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.select :rating, Review::RATINGS %>
+  </div>
+
+   <!-- f.hidden_field movie_id: @movie.id %> -->
+   <!-- f.hidden_field user_id: current_user %> -->
+
+  <div class="actions"><%= f.submit "Submit Review" %></div>
+
+<% end %>
