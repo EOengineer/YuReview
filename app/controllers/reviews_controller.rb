@@ -6,12 +6,6 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @movie = Movie.find(params[:movie_id])
-    @review = Review.new
-
-    params[:review][:user_id] = current_user.id
-    params[:review][:movie_id] = @movie.id
-
     @review = Review.new(review_params)
 
     if @review.save

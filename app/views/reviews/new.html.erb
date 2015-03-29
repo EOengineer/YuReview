@@ -20,8 +20,8 @@
     <%= f.select :rating, Review::RATINGS %>
   </div>
 
-   <!-- f.hidden_field movie_id: @movie.id %> -->
-   <!-- f.hidden_field user_id: current_user %> -->
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :movie_id, value: @movie.id %>
 
   <div class="actions"><%= f.submit "Submit Review" %></div>
 
