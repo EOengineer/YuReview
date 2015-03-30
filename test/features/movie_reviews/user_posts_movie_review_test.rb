@@ -22,4 +22,18 @@ feature 'user posts movie review' do
     Review.all.count.must_equal(starting_count + 1)
     current_path.must_equal(movie_path(@movie))
   end
+
+  scenario 'failure and errors with invalid data' do
+    visit new_movie_review_path(@movie)
+
+    starting_count = Review.all.count
+
+    click_button "Submit Review"
+
+    Review.all.count.must_equal(starting_count)
+    current_path.must_equal(movie_reviews_path(@movie))
+
+    page.must_have_content("Title can't be blank")
+    page.must_have_content("Body can't be blank")
+  end
 end
