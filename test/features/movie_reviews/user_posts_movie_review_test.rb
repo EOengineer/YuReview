@@ -3,7 +3,8 @@ require 'test_helper'
 feature 'user posts movie review' do
 
   before do
-    create_and_authenticate_valid_user
+    @user = create_user
+    authenticate_user(@user)
     @movie = create_movie
   end
 
@@ -42,7 +43,7 @@ feature 'user posts movie review' do
   end
 
   scenario 'failure when movie is already reviewed' do
-    @review = create_review
+    @review = create_review(@movie, @user)
 
     visit new_movie_review_path(@movie)
 

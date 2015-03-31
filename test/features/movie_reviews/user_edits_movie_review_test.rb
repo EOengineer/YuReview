@@ -3,9 +3,10 @@ require 'test_helper'
 feature 'user edits a movie review' do
 
   before do
-    create_and_authenticate_valid_user
+    @user = create_user
+    authenticate_user(@user)
     @movie = create_movie
-    @review = create_review
+    @review = create_review(@movie, @user)
   end
 
   after do
@@ -13,6 +14,8 @@ feature 'user edits a movie review' do
   end
 
   scenario 'successful with valid data' do
+    create_and_authenticate_valid_user
+
     visit edit_movie_review_path(@movie, @review)
 
     fill_in 'Title', with: 'Edited Title'
@@ -34,6 +37,8 @@ feature 'user edits a movie review' do
   end
 
   scenario 'failure and errors with invalid data' do
+    create_and_authenticate_valid_user
+
     visit edit_movie_review_path(@movie, @review)
 
     fill_in 'Title', with: nil
@@ -46,5 +51,13 @@ feature 'user edits a movie review' do
 
     page.must_have_content("Title can't be blank")
     page.must_have_content("Body can't be blank")
+  end
+
+  scenario 'failure when doesnt own review' do
+    @bad_user = User.create(email: 'whatever@whatever.com', password: 'derpasaurus', password_confirmation: 'derpasaurus', first_name: 'name')
+    authenticate_user(@bad_user)
+
+    visit edit_movie_review_path(@movie, @review)
+    current_path.must_equal(signin_path)
   end
 end

@@ -55,8 +55,19 @@ class ActiveSupport::TestCase
     click_button 'Sign In'
   end
 
-  def create_review
-    Review.create(title: 'some title', body: 'some body', rating: '5', user_id: @user.id, movie_id: @movie.id)
+  def authenticate_user(user)
+    visit signin_path
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+
+    click_button 'Sign In'
+  end
+
+
+  def create_review(movie, user)
+    @user = create_user
+    Review.create(title: 'some title', body: 'some body', rating: '5', user_id: user.id, movie_id: movie.id)
   end
 
   def teardown_movie_review

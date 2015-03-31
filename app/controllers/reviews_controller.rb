@@ -1,12 +1,15 @@
 class ReviewsController < ApplicationController
+  before_action :build_parent_movie
+
+  def index
+    @reviews = @movie.reviews.all
+  end
 
   def new
-    @movie = Movie.find(params[:movie_id])
     @review = Review.new
   end
 
   def create
-    @movie = Movie.find(params[:movie_id])
     @review = Review.new(review_params)
 
     if @review.save
@@ -18,12 +21,12 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find(params[:movie_id])
     @review = Review.find(params[:id])
+
+    redirect_to signout_path unless @review.user_id == @current_user.id
   end
 
   def update
-    @movie = Movie.find(params[:movie_id])
     @review = Review.find(params[:id])
 
     if @review.update(review_params)
@@ -35,6 +38,10 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def build_parent_movie
+    @movie = Movie.find(params[:movie_id])
+  end
 
   def review_params
     params.require(:review).permit(:title, :summary, :body, :rating, :user_id, :movie_id)
