@@ -36,4 +36,25 @@ feature 'user posts movie review' do
     page.must_have_content("Title can't be blank")
     page.must_have_content("Body can't be blank")
   end
+
+  scenario 'failure when movie is already reviewed' do
+    user = @user
+    @review = create_review
+
+    visit new_movie_review_path(@movie)
+
+    starting_count = Review.all.count
+
+    fill_in "Title", with: 'Mock Review Title'
+    fill_in "Summary", with: 'Mock Review Summary'
+    fill_in "Body", with: "Some mock text body here"
+    select '5', from: 'Rating'
+
+    click_button "Submit Review"
+
+    Review.all.count.must_equal(starting_count)
+    current_path.must_equal(movie_reviews_path(@movie))
+
+    page.must_have_content("Movie already reviewed.")
+  end
 end
