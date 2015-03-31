@@ -7,6 +7,10 @@ feature 'user posts movie review' do
     @movie = create_movie
   end
 
+  after do
+    teardown_movie_review
+  end
+
   scenario 'success with valid data' do
     visit new_movie_review_path(@movie)
 
@@ -38,7 +42,6 @@ feature 'user posts movie review' do
   end
 
   scenario 'failure when movie is already reviewed' do
-    user = @user
     @review = create_review
 
     visit new_movie_review_path(@movie)

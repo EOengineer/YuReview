@@ -59,6 +59,12 @@ class ActiveSupport::TestCase
     Review.create(title: 'some title', body: 'some body', rating: '5', user_id: @user.id, movie_id: @movie.id)
   end
 
+  def teardown_movie_review
+    Review.delete_all
+    Movie.delete_all
+    User.delete_all
+  end
+
 
 
   # Add more helper methods to be used by all tests here...

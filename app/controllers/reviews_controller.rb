@@ -11,7 +11,24 @@ class ReviewsController < ApplicationController
 
     if @review.save
       flash[:success] = "Review successfully added."
-      redirect_to movie_path(@review.movie)
+      redirect_to movie_path(@movie)
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
+
+    if @review.update(review_params)
+      redirect_to movie_path(@movie)
+      flash[:success] = "Review successfully updated."
     else
       render 'new'
     end
