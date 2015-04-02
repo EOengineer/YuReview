@@ -38,10 +38,14 @@ class ActiveSupport::TestCase
     Movie.new(title: "title", description: "description", year: 1990)
   end
 
-  def create_and_authenticate_valid_user
-    @user = User.create(email: 'test@test_user.com',
+  def create_user
+    User.create(email: 'test@test_user.com',
       first_name: "test", last_name: 'user', password: 'password',
         password_confirmation: 'password')
+  end
+
+  def create_and_authenticate_valid_user
+    @user = create_user
 
     visit signin_path
 
@@ -49,6 +53,27 @@ class ActiveSupport::TestCase
     fill_in 'Password', with: @user.password
 
     click_button 'Sign In'
+  end
+
+  def authenticate_user(user)
+    visit signin_path
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+
+    click_button 'Sign In'
+  end
+
+
+  def create_review(movie, user)
+    @user = create_user
+    Review.create(title: 'some title', body: 'some body', rating: '5', user_id: user.id, movie_id: movie.id)
+  end
+
+  def teardown_movie_review
+    Review.delete_all
+    Movie.delete_all
+    User.delete_all
   end
 
 

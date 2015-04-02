@@ -1,0 +1,32 @@
+<h1>Edit this review!</h1>
+
+<%= render 'errors' %>
+
+<%= form_for [@movie, @review] do |f| %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :summary %>
+    <%= f.text_field :summary %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.select :rating, Review::RATINGS %>
+  </div>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :movie_id, value: @movie.id %>
+
+  <div class="actions"><%= f.submit "Update Review" %></div>
+
+<% end %>
