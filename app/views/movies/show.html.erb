@@ -1,5 +1,18 @@
-<h1><%= @movie.title %></h1>
+<div class="show">
+  <%= content_tag :h1, @movie.title + "(#{@movie.year})" %>
+  <%= image_tag('movie.jpeg') %>
 
-<h5><%= @movie.year %></h5>
+  <p><%= @movie.description %></p>
 
-<p><%= @movie.description %></p>
+  <%= link_to "Add a Review", new_movie_review_path(@movie), class: "button" %>
+
+  <div class="reviews">
+    <% @movie.reviews.each do |review| %>
+      <div class="review show">
+        <%= link_to "#{review.summary} Rating: #{review.rating}", movie_review_path(@movie, review) %>
+      </div>
+    <% end %>
+  </div>
+
+
+</div>
