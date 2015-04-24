@@ -1,0 +1,6 @@
+<div class="show">
+  <%= content_tag :h1, @review.title %>
+  <%= content_tag :h2, "Rating: " + @review.rating.to_s %>
+  <%= content_tag :h5, @review.summary %>
+  <%= content_tag :p, @review.body %>
+</div>

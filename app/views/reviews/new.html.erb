@@ -1,32 +1,34 @@
-<h1>Review this movie!</h1>
+<div class="auth">
+  <h1 class="text-center">Review this movie!</h1>
 
-<%= render 'errors' %>
+  <%= render 'errors' %>
 
-<%= form_for [@movie, @review] do |f| %>
+  <%= form_for [@movie, @review] do |f| %>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
 
-  <div class="field">
-    <%= f.label :summary %>
-    <%= f.text_field :summary %>
-  </div>
+    <div class="field">
+      <%= f.label :summary %>
+      <%= f.text_field :summary %>
+    </div>
 
-  <div class="field">
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </div>
+    <div class="field">
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
 
-  <div class="field">
-    <%= f.label :rating %>
-    <%= f.select :rating, Review::RATINGS %>
-  </div>
+    <div class="field">
+      <%= f.label :rating %>
+      <%= f.select :rating, Review::RATINGS %>
+    </div>
 
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :movie_id, value: @movie.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :movie_id, value: @movie.id %>
 
-  <div class="actions"><%= f.submit "Submit Review" %></div>
+    <div class="actions text-center"><%= button_tag "Submit Review" %></div>
 
-<% end %>
+  <% end %>
+</div>

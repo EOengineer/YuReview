@@ -1,10 +1,10 @@
-<div>
+<div class="auth">
   <%= render 'errors' %>
 
   <h1>Edit movie</h1>
 
   <%= form_for [:admin, @movie] do |f| %>
-    <div class='movie-container'>
+
       <%= f.label :title %>
       <%= f.text_field :title %>
 
@@ -14,8 +14,8 @@
       <%= f.label :year %>
       <%= f.number_field :year %>
 
-      <%= f.submit "Update Movie" %>
-    </div>
+      <div class="text-center"><%= button_tag "Update Movie" %></div>
+
   <% end %>
 
 </div>
