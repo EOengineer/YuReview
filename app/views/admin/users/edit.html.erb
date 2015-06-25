@@ -1,0 +1,27 @@
+<div class="auth">
+  <h1 class="text-center">Edit this User</h1>
+  <%= render 'users/errors' %>
+  <%= form_for [:admin, @user] do |f| %>
+    <div class="field">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :admin %>
+      <%= f.check_box :admin %>
+    </div>
+
+    <div class="actions text-center"><%= button_tag "Update", data: { disable_with: "Submitting..." } %></div>
+  <% end %>
+</div>

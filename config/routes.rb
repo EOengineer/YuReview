@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :movies, except: [:index, :show]
+    resources :users, only: [:index, :edit, :update]
   end
 
   resources :movies, only: [:index, :show] do
