@@ -9,7 +9,9 @@ YuReview setup:
 
 * start Rails server (rails s)
 
-* "rake test" to run test suite
+* rake test to run test suite
+
+* rake db:seed to seed database with some development data
 
 
 
