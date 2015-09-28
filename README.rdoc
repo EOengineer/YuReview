@@ -5,6 +5,8 @@ YuReview setup:
 
 * clone the Repo
 
+* Bundle install
+
 * rake db:create && rake db:migrate
 
 * start Rails server (rails s)
