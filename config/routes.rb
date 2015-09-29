@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root "sessions#new"
 
   namespace :admin do
     resources :movies, except: [:index, :show]

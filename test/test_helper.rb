@@ -41,7 +41,7 @@ class ActiveSupport::TestCase
   def create_user
     User.create(email: 'test@test_user.com',
       first_name: "test", last_name: 'user', password: 'password',
-        password_confirmation: 'password')
+        password_confirmation: 'password', admin: true)
   end
 
   def create_and_authenticate_valid_user
